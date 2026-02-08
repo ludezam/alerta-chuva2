@@ -70,10 +70,14 @@ function usarGPS() {
     return;
   }
 
-navigator.geolocation.getCurrentPosition(async pos => {
+  statusEl.innerText = "📍 Obtendo localização...";
+
+  navigator.geolocation.getCurrentPosition(async pos => {
     LAT = pos.coords.latitude;
     LON = pos.coords.longitude;
-    statusEl.innerText = "⏳ Buscando cidade...";
+
+    let nomeCidade = "Local atual";
+
     try {
       const r = await fetch(
         `https://geocoding-api.open-meteo.com/v1/reverse?latitude=${LAT}&longitude=${LON}&language=pt`
@@ -81,12 +85,20 @@ navigator.geolocation.getCurrentPosition(async pos => {
 
       if (r.ok) {
         const data = await r.json();
-        if (data.results) mostrarCidade(data.results[0].name);       atualizarTudo();
+
+        if (data.results && data.results.length > 0) {
+          nomeCidade = data.results[0].name;
+        }
       }
-    } catch {
-      atualizarTudo();
+    } catch (e) {
+      // silencioso
     }
-  }, () => alert("Permissão de localização negada"));
+
+    mostrarCidade(nomeCidade);
+    atualizarTudo();
+  }, () => {
+    alert("Permissão de localização negada");
+  });
 }
 
 async function atualizarPrevisao() {
