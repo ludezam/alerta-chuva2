@@ -78,6 +78,7 @@ function usarGPS() {
       const r = await fetch(
         `https://geocoding-api.open-meteo.com/v1/reverse?latitude=${LAT}&longitude=${LON}&language=pt`
       );
+    statusEl.innerText = "⏳ Buscando cidade...";
 
       if (r.ok) {
         const data = await r.json();
