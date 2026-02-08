@@ -23,6 +23,16 @@ h2 {
   max-width: 500px;
   margin: auto;
   margin-bottom: 15px;
+  display: flex;
+  gap: 8px;
+}
+
+.busca input {
+  flex: 1;
+}
+
+.busca button {
+  flex: 1;
 }
 
 input,
