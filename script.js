@@ -81,10 +81,8 @@ function usarGPS() {
 
       if (r.ok) {
         const data = await r.json();
-        if (data.results) mostrarCidade(data.results[0].name);
+        if (data.results) mostrarCidade(data.results[0].name);       atualizarTudo();
       }
-
-      atualizarTudo();
     } catch {
       atualizarTudo();
     }
