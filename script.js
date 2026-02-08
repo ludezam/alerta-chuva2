@@ -105,29 +105,14 @@ function usarGPS() {
 async function atualizarPrevisao() {
   try {
     const r = await fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&minutely_15=precipitation&hourly=precipitation_probability&forecast_hours=1&timezone=America/Sao_Paulo`
+      `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&minutely_15=precipitation_probability,precipitation&timezone=America/Sao_Paulo`
     );
 
-    if (!r.ok) throw new Error("Erro na previsão");
+    if (!r.ok) throw "Erro na previsão";
 
     const data = await r.json();
 
-    if (data.error) {
-      throw new Error(data.reason || "Erro ao consultar Open-Meteo");
-    }
-
-    const faixaPrecipitacao = data.minutely_15?.precipitation?.slice(0, 4) || [];
-    const faixaProbabilidade = data.hourly?.precipitation_probability?.slice(0, 1) || [];
-
-    if (!faixaPrecipitacao.length || !faixaProbabilidade.length) {
-      throw new Error("Dados de previsão incompletos");
-    }
-
-    const tempoAPI = data.minutely_15?.time?.[0] || data.hourly?.time?.[0];
-    if (!tempoAPI) {
-      throw new Error("Horário da previsão indisponível");
-    }
-
+    const tempoAPI = data.minutely_15.time[0];
     const dataAPI = new Date(tempoAPI);
     const horaFormatada = dataAPI.toLocaleTimeString("pt-BR", {
       hour: "2-digit",
@@ -135,8 +120,8 @@ async function atualizarPrevisao() {
     });
     ultimaAtualizacaoEl.innerText = `🕒 Última atualização: ${horaFormatada}`;
 
-    const prob = Math.max(...faixaProbabilidade);
-    const chuva = Math.max(...faixaPrecipitacao);
+    const prob = Math.max(...data.minutely_15.precipitation_probability.slice(0, 4));
+    const chuva = Math.max(...data.minutely_15.precipitation.slice(0, 4));
 
     statusEl.innerText = definirStatus(prob, chuva);
     detalheEl.innerHTML = `
@@ -154,8 +139,7 @@ async function atualizarPrevisao() {
 
     restante = INTERVALO;
   } catch (e) {
-    console.error("Falha ao atualizar previsão", e);
-    statusEl.innerText = `❌ ${e.message || "Erro ao atualizar previsão"}`;
+    statusEl.innerText = "❌ Erro ao atualizar previsão";
     alertaEl.innerHTML = "";
   }
 }
