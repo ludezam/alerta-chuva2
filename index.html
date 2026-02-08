@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>⛈️ Alerta de Chuva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <h1>🌧️ Alerta de Chuva</h1>
+
+  <div id="cidadeAtual" class="cidade-atual">
+    📍 Cidade: <b>São José do Rio Preto</b>
+  </div>
+
+  <div class="busca">
+    <input
+      id="cidade"
+      type="text"
+      placeholder="Digite a cidade"
+      aria-label="Nome da cidade"
+    >
+
+    <button id="btnBuscar">🔎 Buscar cidade</button>
+    <button id="btnGPS">📍 Meu local atual</button>
+  </div>
+
+  <div class="box">
+    <div class="status" id="status">⏳ Carregando...</div>
+    <div id="detalhe"></div>
+    <div id="contador"></div>
+  </div>
+
+  <iframe id="mapa" title="Mapa de radar de chuva"></iframe>
+
+  <h2>Mapa fixo de Rio Preto-SP</h2>
+
+  <iframe
+    class="mapa-fixo"
+    src="https://www.rainviewer.com/map.html?loc=-20.8615,-49.356,10&oCS=1&c=3&o=83&lm=1&layer=radar&sm=1&sn=1"
+    title="Mapa fixo Rio Preto">
+  </iframe>
+
+  <small>Desenvolvido por LDZ</small>
+
+</body>
+</html>
