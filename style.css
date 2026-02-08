@@ -1,0 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #0e1621;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 1.8em;
+}
+
+h2 {
+  margin-top: 25px;
+}
+
+.cidade-atual {
+  margin-bottom: 10px;
+  opacity: 0.85;
+}
+
+.busca {
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+input,
+button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: none;
+  margin-top: 6px;
+}
+
+button {
+  background: #1e90ff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.box {
+  background: #162235;
+  padding: 15px;
+  border-radius: 12px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.status {
+  font-size: 1.6em;
+  margin: 20px 0;
+}
+
+#contador {
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+iframe {
+  width: 100%;
+  height: 350px;
+  border: none;
+  border-radius: 12px;
+  margin-top: 15px;
+}
+
+.mapa-fixo {
+  height: 50vh;
+}
+
+small {
+  display: block;
+  margin-top: 15px;
+  opacity: 0.7;
+}
