@@ -70,15 +70,14 @@ function usarGPS() {
     return;
   }
 
-  navigator.geolocation.getCurrentPosition(async pos => {
+navigator.geolocation.getCurrentPosition(async pos => {
     LAT = pos.coords.latitude;
     LON = pos.coords.longitude;
-
+    statusEl.innerText = "⏳ Buscando cidade...";
     try {
       const r = await fetch(
         `https://geocoding-api.open-meteo.com/v1/reverse?latitude=${LAT}&longitude=${LON}&language=pt`
       );
-    statusEl.innerText = "⏳ Buscando cidade...";
 
       if (r.ok) {
         const data = await r.json();
