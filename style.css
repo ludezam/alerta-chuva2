@@ -62,6 +62,11 @@ button:hover {
   max-width: 500px;
   margin: auto;
 }
+#ultimaAtualizacao {
+  margin-top: 6px;
+  font-size: 0.9em;
+  opacity: 0.75;
+}
 
 .status {
   font-size: 1.6em;
