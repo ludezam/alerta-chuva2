@@ -134,15 +134,16 @@ document.addEventListener("DOMContentLoaded", () => {
         alertaEl.innerHTML = "";
       }
 
-      const ultimoHorario = data.hourly.time[0];
-      const dataAPI = new Date(ultimoHorario);
-      const horaFormatada = dataAPI.toLocaleTimeString("pt-BR", {
+    const agora = new Date();
+
+    const horaFormatada = agora.toLocaleTimeString("pt-BR", {
         hour: "2-digit",
         minute: "2-digit"
-      });
-      ultimaAtualizacaoEl.innerText = `🕒 Última atualização: ${horaFormatada}`;
+    });
 
-      restante = INTERVALO;
+    ultimaAtualizacaoEl.innerText = `🕒 Última atualização: ${horaFormatada}`;
+
+    restante = INTERVALO;
 
     } catch (e) {
       statusEl.innerText = "❌ Erro ao atualizar previsão";
